@@ -22,8 +22,15 @@ resource "aws_instance" "ksh_weba" {
   availability_zone = "ap-northeast-2a"
   private_ip = "10.0.0.11"
   subnet_id = aws_subnet.ksh-puba.id
-  user_data = file("../../install_seoul.sh")
+  user_data = file("./install_seoul.sh")
   tags = {
     Name = "ksh-weba"
   }
+}
+
+resource "aws_eip" "ksh_web_eip" {
+  vpc = true
+  instance = aws_instance.ksh_weba.id
+  associate_with_private_ip = "10.0.0.11"
+  depends_on = [aws_internet_gateway.ksh_ig]
 }
