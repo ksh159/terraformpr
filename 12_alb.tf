@@ -4,7 +4,7 @@ resource "aws_lb" "ksh_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.ksh_websg.id]
-  subnets            = [aws_subnet.ksh-puba.id,aws_subnet.ksh-pubc.id]
+  subnets            = [aws_subnet.ksh_puba.id,aws_subnet.ksh_pubc.id]
  /*
     s3버킷에 로그저장
     access_logs {
